@@ -45,6 +45,7 @@ export class AutoresPage implements OnInit {
     }).then(alert => alert.present());
 
   }
+  
   private excluir(autor: Autor) {
     this.autoService.excluir(autor.id);
     this.listar();

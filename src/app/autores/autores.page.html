@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Autores</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +12,7 @@
     <ion-item *ngFor="let autor of autores">
       <ion-label>{{autor.nome}}</ion-label>
       <ion-buttons>
-        <ion-button color="primary">
+        <ion-button color="primary" [routerLink]="['edicao', autor.id]">
           <ion-icon name="create" slot="icon-only"></ion-icon> 
         </ion-button>
         <ion-button color="primary" (click)="confirmarExclusao(autor)">
@@ -20,7 +23,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end">
-    <ion-fab-button>
+    <ion-fab-button [routerLink]="['cadastro']">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
