@@ -3,52 +3,46 @@ import { AlertController } from '@ionic/angular';
 import { Autor } from './autor.model';
 import { AutorService } from './autor.service';
 
+
 @Component({
   selector: 'app-autores',
   templateUrl: './autores.page.html',
   styleUrls: ['./autores.page.scss'],
 })
 export class AutoresPage implements OnInit {
-
   autores: Autor[];
-
 
   constructor(
     private alertController: AlertController,
-    private autoService: AutorService
+    private autorService: AutorService
   ) {
     this.listar();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   listar() {
-    this.autores = this.autoService.getAutores();
+    this.autores = this.autorService.getAutores();
   }
+
   confirmarExclusao(autor: Autor) {
     this.alertController.create({
-      header: 'Confirmação de exclusão',
-      message: 'Deja exlcuir o autor ' + autor.nome + ' ?',
+      header: 'Confirmação de exclusão', 
+      message: `Deseja excluir o autor ${autor.nome}?`,
       buttons: [
         {
           text: 'Sim',
-          handler: () => {
-            this.excluir(autor)
-          }
+          handler: () => this.excluir(autor)
         },
         {
-          text:'Não',
+          text: 'Não',
         }
-
       ]
-    }).then(alert => alert.present());
-
+    }).then(alerta => alerta.present());
   }
-  
+
   private excluir(autor: Autor) {
-    this.autoService.excluir(autor.id);
+    this.autorService.excluir(autor.id);
     this.listar();
   }
- 
 }

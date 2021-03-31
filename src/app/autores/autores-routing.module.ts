@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'edicao/:id',
     component: AutoresCadastroComponent
-  },
+  }
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Autor } from './autor';
+import { Autor } from './autor.model';
 
 describe('Autor', () => {
   it('should create an instance', () => {
