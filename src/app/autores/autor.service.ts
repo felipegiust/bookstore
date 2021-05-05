@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Autor } from './autor.model';
 import { Genero } from './genero.enum';
 
@@ -6,41 +8,39 @@ import { Genero } from './genero.enum';
   providedIn: 'root'
 })
 export class AutorService {
- 
-  private autores: Autor[];
 
-  constructor() { 
-    this.autores = [
-      {
-        id: 1,
-        nome: 'David Flanagan',
-        dataNascimento: new Date(1980, 11, 13),
-        genero: Genero.MASCULINO,
-      }, 
-      {
-        id: 2,
-        nome: 'Douglas Cockford',
-        dataNascimento: new Date(1975, 5, 17),
-        genero: Genero.MASCULINO,
-      },
-      {
-        id: 3,
-        nome: 'Martin Fowler',
-        dataNascimento: new Date(1960, 5, 17),
-        genero: Genero.MASCULINO
-      }
-    ];
-  }
+  private url ='http://localhost:3000/autores';
   
-  getAutores() {
-    return this.autores;
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  getAutores(): Observable<Autor[]> {
+    return this.httpClient.get<Autor[]>(this.url);
   }
 
   excluir(id: number) {
-    this.autores = this.autores.filter(a => a.id !== id);
+    return this.httpClient.delete(`${this.url}/${id}`)
   }
 
-  getAutor(id: number): Autor {
-    return this.autores.find(a => a.id === id);
+  getAutor(id: number): Observable<Autor> {
+    return this.httpClient.get<Autor>(`${this.url}/${id}`);
+  }
+
+  private adicionar(autor: Autor) {
+    return this.httpClient.post(this.url, autor);
+  }
+
+  private atualizar(autor: Autor) {
+    return this.httpClient.put(`${this.url}/${autor.id}`, autor);
+  }
+
+  salvar(autor: Autor) {
+    if (autor.id) {
+      return this.atualizar(autor);
+    } else {
+      return this.adicionar(autor);
+    }
   }
 }

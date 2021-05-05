@@ -1,0 +1,60 @@
+{
+  "livros": [
+    {
+      "titulo": "teste",
+      "isbn": 6,
+      "paginas": 6,
+      "preco": 6,
+      "imagem": "",
+      "autor": {
+        "nome": "Martin Fowler editado 2",
+        "dataNascimento": "1971-02-02T00:00:00-03:00",
+        "genero": "M",
+        "id": 1
+      },
+      "id": 3
+    },
+    {
+      "titulo": "Jogo da vida",
+      "isbn": 152312155,
+      "paginas": 1,
+      "preco": 200,
+      "imagem": "",
+      "autor": {
+        "nome": "felipe Machado",
+        "dataNascimento": "2020-04-28T20:52:18.973-03:00",
+        "genero": "M",
+        "id": 2
+      },
+      "id": 4
+    },
+    {
+      "titulo": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "isbn": 1.2321232121512321e+30,
+      "paginas": 123213213215,
+      "preco": 200,
+      "imagem": "https://s3.amazonaws.com/algaworks-cafe.algaworks.com/wp-content/uploads/2017/04/capa-logica-com-java-3D-300x501.png",
+      "autor": {
+        "nome": "felipe Machado",
+        "dataNascimento": "2020-04-28T20:52:18.973-03:00",
+        "genero": "M",
+        "id": 2
+      },
+      "id": 5
+    }
+  ],
+  "autores": [
+    {
+      "nome": "Martin Fowler editado 2",
+      "dataNascimento": "1971-02-02T00:00:00-03:00",
+      "genero": "M",
+      "id": 1
+    },
+    {
+      "nome": "felipe Machado",
+      "dataNascimento": "2020-04-28T20:52:18.973-03:00",
+      "genero": "M",
+      "id": 2
+    }
+  ]
+}

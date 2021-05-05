@@ -1,9 +1,59 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>livros</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Livros</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+
+    <ion-item-sliding *ngFor="let livro of livros">
+
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="livro.imagem? livro.imagem: 'https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/1906/340719-200.png'"/>
+        </ion-avatar>
+        
+        <ion-label>
+          <h2><strong>{{livro.titulo}}</strong></h2>
+          
+          <h3>Autor(es): <br />{{livro.autor.nome}}</h3>
+          <h4><strong>ISBN:</strong> {{livro.isbn}}</h4>
+          <h4><strong>Pág:</strong> {{livro.paginas}}</h4>
+        </ion-label>
+        <div class="ion-text-right">
+          <h1>
+            <ion-text color="danger">
+              <strong>{{livro.preco | currency: 'R$ '}}</strong>
+            </ion-text>
+          </h1>
+        </div>
+
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="confirmarExclusao(livro)">
+          <ion-icon name="trash" slot="icon-only"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item-options side="start">
+        <ion-item-option [routerLink]="['edicao', livro.id]">
+          <ion-icon name="pencil" slot="icon-only"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['cadastro']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

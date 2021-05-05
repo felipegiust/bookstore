@@ -9,6 +9,8 @@ import { AutoresPageRoutingModule } from './autores-routing.module';
 import { AutoresPage } from './autores.page';
 import { AutoresCadastroComponent } from './autores-cadastro/autores-cadastro.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   imports: [
     FormsModule,
@@ -16,6 +18,7 @@ import { AutoresCadastroComponent } from './autores-cadastro/autores-cadastro.co
     CommonModule,
     IonicModule,
     AutoresPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [AutoresPage, AutoresCadastroComponent]
 })

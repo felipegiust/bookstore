@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cadastro de Livros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="livrosForm">
+    <ion-item>
+      <ion-label>Imagem:</ion-label>
+      <ion-input placeholder="https://...." formControlName="imagem"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Título:</ion-label>
+      <ion-input formControlName="titulo" type="text"></ion-input>
+      <ion-text color="danger" *ngIf="titulo.errors">
+        <small *ngIf="titulo.errors.required && (titulo.dirty || titulo.touched)">
+          O campo Título é obrigatório!
+        </small>
+        <small *ngIf="titulo.errors.minlength && (titulo.dirty || titulo.touched)">
+          O campo Título deve conter no mínimo 3 caracteres
+        </small>
+        <small *ngIf="titulo.errors.maxlength && (titulo.dirty || titulo.touched)">
+          O campo Título deve conter no máximo 150 caracteres
+        </small>
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>ISBN:</ion-label>
+      <ion-input type="number" formControlName="isbn"></ion-input>
+      <ion-text color="danger" *ngIf="isbn.errors">
+        <small *ngIf="isbn.errors.required && (isbn.dirty || isbn.touched)">
+          O campo ISBN é obrigatório!
+        </small>
+        <small *ngIf="isbn.errors.min && (isbn.dirty || isbn.touched)">
+          O campo ISBN deve conter um valor mínimo 1
+        </small>
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>N° de Páginas:</ion-label>
+      <ion-input type="number" formControlName="paginas"></ion-input>
+      <ion-text color="danger" *ngIf="paginas.errors">
+        <small *ngIf="paginas.errors.required && (paginas.dirty || paginas.touched)">
+          O campo N° de Páginas é obrigatório!
+        </small>
+        <small *ngIf="paginas.errors.min && (paginas.dirty || paginas.touched)">
+          O campo N° de Páginas deve conter um valor mínimo 1
+        </small>
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Autores:</ion-label>
+      <ion-text color="danger" *ngIf="autor.errors">
+        <small *ngIf="autor.errors.required && (autor.dirty || autor.touched)">
+          O campo Autor é obrigatório!
+        </small>
+      </ion-text>
+      <ion-select [compareWith]="compareWithAutores" formControlName="autor" multiple="false"
+        placeholder="Selecione os Autores">
+        <ion-select-option *ngFor="let autor of autores" [value]="autor">
+          {{autor.nome}}
+        </ion-select-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Preço:</ion-label>
+      <ion-input type="number" inputmode="decimal" formControlName="preco"></ion-input>
+      <ion-text color="danger" *ngIf="preco.errors">
+        <small *ngIf="preco.errors.required && (preco.dirty || preco.touched)">
+          O campo Preço é obrigatório !
+        </small>
+        <small *ngIf="preco.errors.min && (preco.dirty || preco.touched)">
+          O campo Preço deve conter um valor mínimo R$ 1,00
+        </small>
+      </ion-text>
+    </ion-item>
+
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="salvar()" [disabled]="!livrosForm.valid">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+
+</ion-content>
